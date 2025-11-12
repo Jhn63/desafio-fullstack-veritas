@@ -20,8 +20,16 @@ function App() {
   return (
    <>
    <h1>Quadro Kanban</h1>
-   <TaskForm setTasks={setTasks}/>
-   <KanbanBoard tasks={tasks}/>
+   <div className='app-container'>
+    <aside className='side-bar'>
+      <TaskForm setTasks={setTasks}/>
+    </aside>
+    
+    <main className='board-area'>
+      <KanbanBoard tasks={tasks}/>
+    </main>
+    
+   </div>
    </>
   )
 }

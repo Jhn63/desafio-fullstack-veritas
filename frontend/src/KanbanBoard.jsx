@@ -1,26 +1,26 @@
 import Column from './Column'
+import './KanbanBoard.css'
 
 function KanbanBoard({tasks}) {
   return (
-    <div class="kanban-board">
-      <h2>Quadro</h2>
-      
-      <Column 
-        name="A Fazer"
-        tasks={tasks.todo}
-      />
+    <>
+      <div className='kanban-columns'>
+        <Column 
+          name="A Fazer"
+          tasks={tasks.todo}
+        />
 
-      <Column 
-        name="Em Progresso"
-        tasks={tasks.inprogress}
-      />
+        <Column 
+          name="Em Progresso"
+          tasks={tasks.inprogress}
+        />
 
-      <Column 
-        name="Concluídas"
-        tasks={tasks.done}
-      />
-
-    </div>
+        <Column 
+          name="Concluídas"
+          tasks={tasks.done}
+        />
+      </div>
+    </>
   );
 }
 

@@ -1,0 +1,8 @@
+.kanban-columns{
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}

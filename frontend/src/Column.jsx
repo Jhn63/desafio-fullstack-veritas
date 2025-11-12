@@ -1,14 +1,14 @@
-
+import './Column.css'
 
 function Column({name, tasks}) {
   return (
-		<div class="column">
+		<div className="column">
 			<h3>{name}</h3>
-			<div>
 
+			<div className="column-list">
 				{tasks.map((task) => {
           return (
-            <div>
+            <div className="task-card">
               <h4>{task.title}</h4>
               <p>{task.description}</p>
             </div>

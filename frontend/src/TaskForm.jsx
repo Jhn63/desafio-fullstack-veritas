@@ -38,32 +38,34 @@ function TaskForm({setTasks}) {
   }
 
   return (
-    <div className="task-form" >
+    <>
       <form onSubmit={handleSubmit}>
         <h2>Criar Nova Tarefa</h2>
         
         <div>
-          <label htmlFor="title">Titulo</label>
+          <label htmlFor="title" />
           <input
             type="text"
             name="title"
+            placeholder='Título da Tarefa'
             value={formData.title}
             onChange={handleChange}
           />
         </div>
 
         <div>
-          <label htmlFor="description">Descrição</label>
+          <label htmlFor="description" />
           <textarea
             name="description"
             rows="5"
+            placeholder='Descreva sua tarefa aqui...'
             value={formData.description}
             onChange={handleChange}
           ></textarea>
         </div>
 
         <div>
-          <label htmlFor="status">Status</label>
+          <label htmlFor="status" />
           <select 
             name="status"
             value={formData.status}
@@ -77,7 +79,7 @@ function TaskForm({setTasks}) {
 
         <button type="submit">Criar Tarefa</button>
       </form>
-    </div>
+    </>
   );
 }
 
