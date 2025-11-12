@@ -4,12 +4,24 @@ import TaskForm from './TaskForm';
 import './App.css'
 
 function App() {
+
+  const [tasks, setTasks] = useState({
+    todo: [
+      
+    ],
+    inprogress: [
+      
+    ],
+    done: [
+      
+    ],
+  })
   
   return (
    <>
    <h1>Quadro Kanban</h1>
-   <TaskForm />
-   <KanbanBoard />
+   <TaskForm setTasks={setTasks}/>
+   <KanbanBoard tasks={tasks}/>
    </>
   )
 }
