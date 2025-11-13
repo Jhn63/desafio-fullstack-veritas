@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 
 function TaskForm({setTasks}) {
   const [formData, setFormData] = useState({
+    id: 0,
     title: '',
     description: '',
     status: 'todo'
@@ -16,25 +18,36 @@ function TaskForm({setTasks}) {
     }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("form subimitted: ", formData)
     
-    setTasks((prev) => {
-      return {
-        ...prev,
-        [formData.status]: [
-          ...prev[formData.status],
-          formData
-        ]
-      }
-    })
+    //setting unique id
+    setFormData(prev => ({
+      ...prev,
+      id: Date.now()
+    }));
 
-    setFormData({
-      title: '',
-      description: '',
-      status: 'todo'
-    })
+    try {
+      const response = await axios.post('http://localhost:8080/post', formData);
+
+      setTasks((prev) => {
+        return {
+          ...prev,
+          [formData.status]: [
+            ...prev[formData.status],
+            response.data
+          ]
+        }
+      })
+
+      setFormData({
+        title: '',
+        description: '',
+        status: 'todo'
+      })
+    } catch (error) {
+      console.error("Failed to create task:", error);
+    }
   }
 
   return (
@@ -50,6 +63,7 @@ function TaskForm({setTasks}) {
             placeholder='Título da Tarefa'
             value={formData.title}
             onChange={handleChange}
+            required
           />
         </div>
 

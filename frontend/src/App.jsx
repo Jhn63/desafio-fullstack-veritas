@@ -11,7 +11,7 @@ function App() {
     async function fetchTasks() {
       try {
         const response = await axios.get('http://localhost:8080/tasks');
-        console.log(response.data)
+        setTasks(response.data)
       } catch (error) {
         console.error("Failed to fetch tasks:", error);
       }
