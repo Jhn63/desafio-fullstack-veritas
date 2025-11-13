@@ -10,7 +10,11 @@ import (
 )
 
 func main() {
-	th := &TaskHandler{Tasks: make(map[int]Task)}
+	th := &TaskHandler{
+		Todo:       []Task{},
+		InProgress: []Task{},
+		Done:       []Task{},
+	}
 
 	godotenv.Load(".env")
 
@@ -27,6 +31,7 @@ func main() {
 	}))
 
 	app.Get("/tasks/:id", th.GetTask)
+	app.Get("/tasks", th.GetAllTask)
 	app.Post("/post", th.CreateTask)
 	app.Patch("/tasks/:id", th.UpdateTask)
 	app.Delete("/tasks/:id", th.DeleteTask)

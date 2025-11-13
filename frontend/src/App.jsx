@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import KanbanBoard from './KanbanBoard';
 import TaskForm from './TaskForm';
+import axios from 'axios';
 import './App.css'
 
 function App() {
+  const [tasks, setTasks] = useState({ todo: [], inprogress: [], done: [] })
 
-  const [tasks, setTasks] = useState({
-    todo: [
-      
-    ],
-    inprogress: [
-      
-    ],
-    done: [
-      
-    ],
-  })
+  useEffect(() => {
+    async function fetchTasks() {
+      try {
+        const response = await axios.get('http://localhost:8080/tasks');
+        console.log(response.data)
+      } catch (error) {
+        console.error("Failed to fetch tasks:", error);
+      }
+    }
+
+    fetchTasks();
+  }, []);
   
   return (
    <>
